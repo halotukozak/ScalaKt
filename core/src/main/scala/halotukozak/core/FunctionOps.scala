@@ -1,11 +1,29 @@
 package halotukozak.core
 
-import halotukozak.core.KBasicUtils.*
-import kotlin.jvm.functions as kjv
+import halotukozak.`macro`.KFunctionMacros
+import halotukozak.`macro`.KFunctionMacros.{KFunction, SFunctionN}
 
-import scala.runtime.FunctionXXL
+object FunctionOps {
+
+  //  extension [N <: Int, T <: KFunction[Types, R], Types <: Tuple, R](f: T)
+  //    def asScala: Any = ???
+
+  extension [N <: Int & Singleton, T <: SFunctionN[Types, R], Types <: Tuple, R](f: T)
+    transparent inline def asKotlin: KFunction[Types, R] = KFunctionMacros.asKotlin(f)
+
+}
 
 
+
+
+
+//
+//import halotukozak.core.KBasicUtils.*
+//import kotlin.jvm.functions as kjv
+//
+//import scala.runtime.FunctionXXL
+//
+//
 ///*Scala to Kotlin*/
 //extension (u: Unit)
 //  def asKotlin: KUnit = kotlin.Unit.INSTANCE
